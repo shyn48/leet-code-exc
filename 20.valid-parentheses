@@ -1,0 +1,34 @@
+func pop(stack *[]string) (string) {
+    cloned := *stack
+    
+    x := cloned[len(cloned)-1]
+    *stack = cloned[:len(cloned)-1]
+ 
+    return x
+}
+
+func isValid(s string) bool {
+    var charStack []string
+    
+    characterHashTable := map[string]string{
+        "(":")",
+        "{":"}",
+        "[":"]",
+    }
+    
+    charStack = append(charStack, characterHashTable[string(s[0])])
+        
+    for _, char := range s[1:] {
+        strChar := string(char)
+                
+        if strChar == ")" || strChar == "}" || strChar == "]"  {
+            if len(charStack) == 0 || pop(&charStack) != strChar {
+                return false
+            }
+        } else {
+            charStack = append(charStack, characterHashTable[strChar])
+        }
+    }
+        
+    return len(charStack) == 0
+}
