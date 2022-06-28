@@ -67,3 +67,47 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	return resultList
 }
+
+// second run
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    result := &ListNode{
+        Val: 0,
+        Next: nil,
+    }
+    
+    dummy := result
+    carry := 0
+    for l1 != nil || l2 != nil {
+        x,y := 0, 0
+        fmt.Println(l1,l2,dummy)
+        if l1 != nil {
+            x = l1.Val
+        }
+        if l2 != nil {
+            y = l2.Val
+        }
+
+        sum := x + y + carry
+        carry = sum / 10
+        dummy.Next = &ListNode{
+            Val: sum % 10,
+        }
+
+        
+        dummy = dummy.Next        
+        if l1 != nil {
+            l1 = l1.Next
+        }
+        if l2 != nil {
+            l2 = l2.Next
+        }
+    }
+    
+    if carry > 0 {
+        dummy.Next = &ListNode{
+            Val: carry,
+        }
+    }
+    
+    return result.Next
+}
