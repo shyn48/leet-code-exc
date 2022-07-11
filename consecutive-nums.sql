@@ -22,7 +22,7 @@ and l1.num = l2.num
 and l2.num = l3.num
 group by l1.num
 
-/# third try
+# third try
 SELECT distinct num ConsecutiveNums
 FROM
 (SELECT id, num,
