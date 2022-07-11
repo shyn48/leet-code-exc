@@ -21,3 +21,13 @@ and l2.id = l3.id - 1
 and l1.num = l2.num 
 and l2.num = l3.num
 group by l1.num
+
+/# third try
+SELECT distinct num ConsecutiveNums
+FROM
+(SELECT id, num,
+lag(num) over (order by id) as before,
+lead(num) over (order by id) as after
+
+FROM logs) next_prev
+WHERE num=before and before =after
