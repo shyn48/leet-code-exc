@@ -15,3 +15,6 @@ select Email
 from Person
 group by Email
 having count(Email) > 1;
+
+#second try
+select email from Person group by email having count(email) > 1
