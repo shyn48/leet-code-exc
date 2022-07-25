@@ -6,3 +6,11 @@ where p1.email = p2.email and p1.id > p2.id
 DELETE FROM Person WHERE Id NOT IN 
 (SELECT * FROM(
     SELECT MIN(Id) FROM Person GROUP BY Email) as p);
+
+#second try
+
+delete from Person where Id not in
+(
+   select * from ( SELECT MIN(Id) FROM Person GROUP BY Email) as p
+);
+
