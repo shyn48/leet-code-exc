@@ -16,3 +16,8 @@ from (
     from Activity
 ) as subquery
 where row_rank = 1;
+
+#second try 
+select player_id, min(event_date) as First_Login
+from Activity
+group by player_id
