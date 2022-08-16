@@ -19,3 +19,23 @@ func longestCommonPrefix(strs []string) string {
 }
 
 // alternative (faster) solutions https://leetcode.com/problems/longest-common-prefix/solution/
+
+
+// second try
+
+func longestCommonPrefix(strs []string) string {
+    if len(strs) == 0 {
+        return ""
+    }
+    
+    for i := range strs[0] {
+        for j := range strs {
+            s := string(strs[j])
+            if i == len(s) || s[i] != strs[0][i] {
+                return strs[0][:i]
+            }
+        }
+    }
+    
+    return strs[0]
+}
