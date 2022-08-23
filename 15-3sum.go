@@ -48,3 +48,62 @@ func threeSum(nums []int) [][]int {
     
     return result
 }
+
+
+#second try
+
+func bubbleSort(array[] int)[]int {
+   for i:=0; i< len(array)-1; i++ {
+      for j:=0; j < len(array)-i-1; j++ {
+         if (array[j] > array[j+1]) {
+            array[j], array[j+1] = array[j+1], array[j]
+         }
+      }
+   }
+   return array
+}
+
+func threeSum(nums []int) [][]int {
+    arr := bubbleSort(nums)
+    
+    //  [-4,-1,-1,0,1,2]
+    
+    var result [][]int
+    
+    for i := 0; i < len(arr); i++ {
+        first := nums[i]
+        l := i + 1
+        r := len(arr) - 1
+        
+        if i > 0 && nums[i] == nums[i-1] {
+            continue
+        }
+        
+        for l < r {
+            sum := first + nums[l] + nums[r]
+            
+            if sum > 0 {
+                r--
+            } else if sum < 0 {
+                l++
+            } else {
+                triplet := []int{first, nums[l], nums[r]}
+                
+                result = append(result, triplet)
+                
+                for len(nums) > l + 1 && nums[l] == nums[l+1] {
+                    l++
+                }
+                
+                for r > 0 && nums[r] == nums[r-1] {
+                    r--
+                }
+                
+                l++
+                r--
+            }
+        }
+    }
+    
+    return result
+}
