@@ -3,3 +3,11 @@ select * from Cinema
 where id % 2 <> 0 
 and description <> "boring"
 order by rating desc
+
+#second try :/
+
+select * from Cinema
+where id % 2 != 0 
+and 
+description != 'boring'
+order by rating desc
